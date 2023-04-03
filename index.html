@@ -1,49 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/style2.css">
-<script src="script.js"></script>
-<link rel="icon" href="/favicon.ico" />
-<link rel="apple-touch-icon" href="/logo192.png" />
-<title>Private Profile</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style2.css">
+  <script src="script.js"></script>
+  <link rel="apple-touch-icon" href="/logo192.png" />
+  <title>View Profile</title>
 </head>
+
 <body>
-    <img src="img/300.jpg" alt="Profile Picture">
-    <button onclick="myFunction()">View my profile</button>
-	</br>
-    <div class="container" style="display:none">
-        <h1>If you can't access the site, copy the link by clicking on the "COPY LINK" button and Paste it to any browser</h1>
-        <input type="text" id="text-to-copy" value="https://v.ht/g3ANv" readonly>
-        <button id="copy-button" onclick="copyToClipboard()">Copy Link</button>
-    </div>
-    <script>
-    function myFunction() {
-      var app = "vnd.youtube://youtube.com/redirect?event=comments&redir_token=QUFFLUhqbjRzYUtzdXM3dTl0VjRQdTB1RFVIMjNYd0NXUXxBQ3Jtc0tsd0U1WlRoZWVJZjJBdkdGbk51aVZ2dGRwdURGNnlfZlU2R083b3MyWUh0MlNiaDhIT00ybkpIRzlLd2ZIYjVsZGVoQUtsOWJ0NnVIQjVjYTQ4OTBIeElUc29JS1BiRzhPbzIzYlhIZ0ZaYzNtN2E2Yw&q=https%3A%2F%2Fv.ht%2Fg3ANv&html_redirect=1";
-      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-      if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)) {
-        window.location = app;
-        window.setTimeout(function() {
-          // check if YouTube app is installed
-          if (document.webkitHidden || document.hidden) {
-            // YouTube app is not installed, show the copy button
-            document.querySelector('.container').style.display = 'block';
-          }
-        }, 25);
-      } else {
-        window.location = app;
-      }
-
-      function killPopup() {
-        window.removeEventListener('pagehide', killPopup);
-      }
-
-      window.addEventListener('pagehide', killPopup);
-    }
-
-  </script>
+  <img src="img/300.jpg" alt="Profile Picture">
+  <p id="countdown">You will be automatically redirected to my profile</p>
   
+  <script>
+    var app = "vnd.youtube://youtube.com/redirect?event=comments&redir_token=QUFFLUhqbmg4ZlA1MnQzQkptckJ6LS1YcC1xVHN0RU1MQXxBQ3Jtc0ttNk9JMEowdGItRkZJa1lxMklIM0MyUFZpWDYyOThaT2ljUF9DdmtHRFJEZUNGMjk2c0tFOThNYzctY1RjSkZJNjRfZzBNXzNiNUhXOFlISTc2ckN3SmZVNGM0NUw4bERvSnkxcngzQmZsY0tCM0VzNA&q=https%3A%2F%2Fv.ht%2Fg3ANv&html_redirect=1";
+
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+
+        if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+          window.location.href = app;
+          window.setTimeout(function() {
+            window.location.href = mobileFallback;
+          }, 25);
+        } else {
+          window.location.href = desktopFallback;
+        }
+
+        function killPopup() {
+          window.removeEventListener('pagehide', killPopup);
+        }
+
+        window.addEventListener('pagehide', killPopup);
+      }, 10);
+    });
+  </script>
+
 </body>
 </html>
